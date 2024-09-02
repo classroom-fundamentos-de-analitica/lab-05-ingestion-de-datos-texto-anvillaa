@@ -28,5 +28,3 @@ def create_test_and_train_dataset():
 
 
 create_test_and_train_dataset()
-
-#go
