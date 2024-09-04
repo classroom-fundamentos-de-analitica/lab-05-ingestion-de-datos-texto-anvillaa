@@ -1,7 +1,7 @@
 name: Autograding Tests
-on:
-  push:
-  repository_dispatch:
+"on":
+  - push
+  - repository_dispatch
 permissions:
   checks: write
   actions: read
@@ -13,26 +13,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: List directory contents
-        run: |
-          echo "Contenido del directorio raíz:"
-          ls -la
-          echo "Contenido del directorio .github/workflows:"
-          ls -la .github/workflows
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; else echo "requirements.txt not found"; fi
       - name: Test
         id: test
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test
-          setup-command: echo "Dependencies already installed"
+          setup-command: pip3 install -r requirements.txt
           command: python3 test.py
           timeout: 10
           max-score: 1
