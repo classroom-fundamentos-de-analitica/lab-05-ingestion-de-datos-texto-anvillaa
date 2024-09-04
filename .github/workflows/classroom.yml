@@ -1,7 +1,7 @@
 name: Autograding Tests
-"on":
-  - push
-  - repository_dispatch
+on:
+  push:
+  repository_dispatch:
 permissions:
   checks: write
   actions: read
@@ -18,7 +18,7 @@ jobs:
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Test
-          setup-command: pip install -r Analitica/TALLERES/lab-05-ingestion-de-datos-texto-anvillaa/requirements.txt
+          setup-command: pip install -r requirements.txt
           command: python3 test.py
           timeout: 10
           max-score: 1
